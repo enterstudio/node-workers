@@ -1,0 +1,21 @@
+web:
+  build: .
+  command: node server.js
+  environment:
+    - REDIS_URL=redis://redis
+  ports:
+    - 5000:8080
+  links:
+    - redis
+
+worker:
+  command: node worker.js
+  build: .
+  environment:
+    - REDIS_URL=redis://redis
+    - SECRET_PASSWORD=shhhhhh
+  links:
+    - redis
+
+redis:
+  image: redis
