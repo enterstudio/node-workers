@@ -4,7 +4,7 @@ web:
   environment:
     - REDIS_URL
   ports:
-    - 5000:8080
+    - 80:8080
   links:
     - redis
 
