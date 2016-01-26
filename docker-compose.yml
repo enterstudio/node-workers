@@ -2,7 +2,7 @@ web:
   build: .
   command: node server.js
   environment:
-    - REDIS_URL=redis://redis
+    - REDIS_URL
   ports:
     - 5000:8080
   links:
@@ -10,12 +10,13 @@ web:
 
 worker:
   command: node worker.js
-  build: .
   environment:
-    - REDIS_URL=redis://redis
-    - SECRET_PASSWORD=shhhhhh
+    - REDIS_URL
+  build: .
   links:
     - redis
 
 redis:
-  image: redis
+  image: convox/redis
+  ports:
+    - 6379
